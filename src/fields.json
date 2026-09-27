@@ -1,0 +1,347 @@
+[
+  {
+    "key": "text_1",
+    "group": "Page details",
+    "label": "Seajax \u00b7 Stay close to the coast"
+  },
+  {
+    "key": "text_2",
+    "group": "Welcome",
+    "label": "YOUR LITTLE CORNER OF BLOUBERG"
+  },
+  {
+    "key": "text_3",
+    "group": "Welcome",
+    "label": "Unwind by the sea."
+  },
+  {
+    "key": "text_4",
+    "group": "Welcome",
+    "label": "Stay a little"
+  },
+  {
+    "key": "text_5",
+    "group": "Welcome",
+    "label": "longer."
+  },
+  {
+    "key": "text_6",
+    "group": "Welcome",
+    "label": "Salt on your skin. A slower kind of morning."
+  },
+  {
+    "key": "text_7",
+    "group": "Welcome",
+    "label": "Four self-catering stays, a short drive from the beach."
+  },
+  {
+    "key": "text_8",
+    "group": "Welcome",
+    "label": "Find your stay"
+  },
+  {
+    "key": "text_9",
+    "group": "Welcome",
+    "label": "33\u00b0 SOUTH. RIGHT WHERE YOU WANT TO BE."
+  },
+  {
+    "key": "text_10",
+    "group": "Welcome",
+    "label": "Discover Seajax \u2193"
+  },
+  {
+    "key": "text_11",
+    "group": "Welcome",
+    "label": "BLOUBERG, CAPE TOWN"
+  },
+  {
+    "key": "text_12",
+    "group": "Welcome",
+    "label": "Four individual stays"
+  },
+  {
+    "key": "text_13",
+    "group": "Welcome",
+    "label": "Self-catering freedom"
+  },
+  {
+    "key": "text_14",
+    "group": "Welcome",
+    "label": "5 minutes to the beach by car"
+  },
+  {
+    "key": "text_15",
+    "group": "Our stays",
+    "label": "SETTLE INTO YOUR OWN SPACE"
+  },
+  {
+    "key": "text_16",
+    "group": "Our stays",
+    "label": "Four stays."
+  },
+  {
+    "key": "text_17",
+    "group": "Our stays",
+    "label": "One coastal state of mind."
+  },
+  {
+    "key": "text_18",
+    "group": "Our stays",
+    "label": "For slow mornings, beach days and time together. Explore each space, choose your favo"
+  },
+  {
+    "key": "text_19",
+    "group": "Our stays",
+    "label": "Pearl"
+  },
+  {
+    "key": "text_20",
+    "group": "Our stays",
+    "label": "Light & easy"
+  },
+  {
+    "key": "text_21",
+    "group": "Our stays",
+    "label": "Bright, calm and completely your own. A comfortable stay for one or two, with everyth"
+  },
+  {
+    "key": "text_22",
+    "group": "Our stays",
+    "label": "Check availability"
+  },
+  {
+    "key": "text_23",
+    "group": "Our stays",
+    "label": "Coral"
+  },
+  {
+    "key": "text_24",
+    "group": "Our stays",
+    "label": "Ideal for longer stays"
+  },
+  {
+    "key": "text_25",
+    "group": "Our stays",
+    "label": "A welcoming self-catering unit that is well suited to longer stays. Make yourself com"
+  },
+  {
+    "key": "text_26",
+    "group": "Our stays",
+    "label": "Check availability"
+  },
+  {
+    "key": "text_27",
+    "group": "Our stays",
+    "label": "Swell"
+  },
+  {
+    "key": "text_28",
+    "group": "Our stays",
+    "label": "Space to unwind"
+  },
+  {
+    "key": "text_29",
+    "group": "Our stays",
+    "label": "A comfortable self-catering space to settle into after a day out. Enjoy relaxed morni"
+  },
+  {
+    "key": "text_30",
+    "group": "Our stays",
+    "label": "Check availability"
+  },
+  {
+    "key": "text_31",
+    "group": "Our stays",
+    "label": "Kelp"
+  },
+  {
+    "key": "text_32",
+    "group": "Our stays",
+    "label": "Your quiet corner"
+  },
+  {
+    "key": "text_33",
+    "group": "Our stays",
+    "label": "Tucked at the back of the property, with garden views and a little more quiet. A peac"
+  },
+  {
+    "key": "text_34",
+    "group": "Our stays",
+    "label": "Check availability"
+  },
+  {
+    "key": "text_35",
+    "group": "The coast",
+    "label": "TAKE LIFE AT YOUR OWN PACE"
+  },
+  {
+    "key": "text_36",
+    "group": "The coast",
+    "label": "A little sea air."
+  },
+  {
+    "key": "text_37",
+    "group": "The coast",
+    "label": "A change of scenery."
+  },
+  {
+    "key": "text_38",
+    "group": "The coast",
+    "label": "Take a short drive to Blouberg Beach, take in the views of Table Mountain, or spend t"
+  },
+  {
+    "key": "text_39",
+    "group": "The coast",
+    "label": "Local weather on Windguru"
+  },
+  {
+    "key": "text_40",
+    "group": "The coast",
+    "label": "Beach days"
+  },
+  {
+    "key": "text_41",
+    "group": "The coast",
+    "label": "Just a five-minute drive to the beach, with ocean views and time to relax."
+  },
+  {
+    "key": "text_42",
+    "group": "The coast",
+    "label": "Your own rhythm"
+  },
+  {
+    "key": "text_43",
+    "group": "The coast",
+    "label": "Self-catering freedom for breakfast at home, an evening in, or a day out."
+  },
+  {
+    "key": "text_44",
+    "group": "The coast",
+    "label": "Explore Cape Town"
+  },
+  {
+    "key": "text_45",
+    "group": "The coast",
+    "label": "Stay near the coast, within reach of the city's sights, shops and restaurants."
+  },
+  {
+    "key": "text_46",
+    "group": "Location",
+    "label": "CLOSE TO THE WATER. CLOSE TO EVERYTHING."
+  },
+  {
+    "key": "text_47",
+    "group": "Location",
+    "label": "A little less travelling."
+  },
+  {
+    "key": "text_48",
+    "group": "Location",
+    "label": "A little more living."
+  },
+  {
+    "key": "text_49",
+    "group": "Location",
+    "label": "31 Tritonia Road"
+  },
+  {
+    "key": "text_50",
+    "group": "Location",
+    "label": "Table View, Cape Town, 7441"
+  },
+  {
+    "key": "text_51",
+    "group": "Location",
+    "label": "Open in Google Maps"
+  },
+  {
+    "key": "text_52",
+    "group": "Location",
+    "label": "Blouberg Beach / Kite Beach"
+  },
+  {
+    "key": "text_53",
+    "group": "Location",
+    "label": "~5 min drive"
+  },
+  {
+    "key": "text_54",
+    "group": "Location",
+    "label": "Table View shops & restaurants"
+  },
+  {
+    "key": "text_55",
+    "group": "Location",
+    "label": "~10 min drive"
+  },
+  {
+    "key": "text_56",
+    "group": "Location",
+    "label": "Cape Town city centre"
+  },
+  {
+    "key": "text_57",
+    "group": "Location",
+    "label": "~25 min drive"
+  },
+  {
+    "key": "text_58",
+    "group": "Location",
+    "label": "Cape Town International Airport"
+  },
+  {
+    "key": "text_59",
+    "group": "Location",
+    "label": "~35 min drive"
+  },
+  {
+    "key": "text_60",
+    "group": "Location",
+    "label": "Travel times are approximate."
+  },
+  {
+    "key": "text_61",
+    "group": "Booking",
+    "label": "YOUR NEXT CHAPTER, BY THE SEA"
+  },
+  {
+    "key": "text_62",
+    "group": "Booking",
+    "label": "See you in"
+  },
+  {
+    "key": "text_63",
+    "group": "Booking",
+    "label": "Blouberg."
+  },
+  {
+    "key": "text_64",
+    "group": "Booking",
+    "label": "Find your dates, choose your space, and make it a stay to remember."
+  },
+  {
+    "key": "text_65",
+    "group": "Booking",
+    "label": "View current rates and availability on your preferred booking platform."
+  },
+  {
+    "key": "text_66",
+    "group": "Booking",
+    "label": "Book on Airbnb"
+  },
+  {
+    "key": "text_67",
+    "group": "Booking",
+    "label": "Book on Booking.com"
+  },
+  {
+    "key": "text_68",
+    "group": "Footer",
+    "label": "info@seajax.co.za \u2197"
+  },
+  {
+    "key": "text_69",
+    "group": "Footer",
+    "label": "Seajax"
+  }
+]

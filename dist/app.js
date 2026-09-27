@@ -3,12 +3,66 @@ document.querySelectorAll('.unit-slideshow').forEach(slideshow => {
   const image = slideshow.querySelector('img');
   const count = slideshow.querySelector('.photo-count');
   let index = 0;
-  function show(next) {
-    index = (next + photos.length) % photos.length;
-    image.src = photos[index].src;
-    image.alt = photos[index].alt;
-    count.textContent = `${index + 1} / ${photos.length}`;
+  let request = 0;
+  const cache = new Map();
+  const status = document.createElement('span');
+  status.className = 'slide-status';
+  status.setAttribute('role', 'status');
+  slideshow.append(status);
+  const wrap = value => (value + photos.length) % photos.length;
+  function prepare(position) {
+    const photo = photos[wrap(position)];
+    if (!cache.has(photo.src)) {
+      const preload = new Image();
+      preload.decoding = 'async';
+      const ready = new Promise((resolve, reject) => {
+        preload.onload = async () => {
+          try { await preload.decode(); } catch (_) { /* Loaded image remains usable. */ }
+          resolve(preload);
+        };
+        preload.onerror = () => { cache.delete(photo.src); reject(new Error('Photo unavailable')); };
+      });
+      cache.set(photo.src, ready);
+      preload.src = photo.src;
+    }
+    return cache.get(photo.src);
   }
+  function warmNeighbours() {
+    [-1, 1, 2].forEach(offset => prepare(index + offset).catch(() => {}));
+  }
+  async function show(next) {
+    index = wrap(next);
+    const target = index;
+    const currentRequest = ++request;
+    status.textContent = '';
+    slideshow.setAttribute('aria-busy', 'true');
+    const timer = setTimeout(() => {
+      if (currentRequest === request) status.textContent = 'Loading photo…';
+    }, 180);
+    try {
+      await prepare(target);
+      if (currentRequest !== request) return;
+      image.src = photos[target].src;
+      image.alt = photos[target].alt;
+      count.textContent = `${target + 1} / ${photos.length}`;
+      warmNeighbours();
+    } catch (_) {
+      if (currentRequest === request) status.textContent = 'Photo could not load. Try another arrow.';
+    } finally {
+      clearTimeout(timer);
+      if (currentRequest === request) {
+        slideshow.setAttribute('aria-busy', 'false');
+        if (status.textContent === 'Loading photo…') status.textContent = '';
+      }
+    }
+  }
+  const observer = new IntersectionObserver(entries => {
+    if (entries.some(entry => entry.isIntersecting)) {
+      warmNeighbours();
+      observer.disconnect();
+    }
+  }, {rootMargin: '250px'});
+  observer.observe(slideshow);
   slideshow.querySelector('.previous').addEventListener('click', () => show(index - 1));
   slideshow.querySelector('.next').addEventListener('click', () => show(index + 1));
   slideshow.addEventListener('keydown', event => {

@@ -1,0 +1,4 @@
+const files=['swell.jpeg','gallery1.jpeg','gallery2.jpeg','gallery3.jpeg','gallery4.jpeg','gallery5.jpeg','gallery6.jpeg','coral.jpeg','gallery7.jpeg','gallery8.jpeg','gallery9.jpeg','gallery10.jpeg'];
+const gallery=document.querySelector('#photos');const dialog=document.querySelector('dialog');
+files.forEach((src,i)=>{const button=document.createElement('button');button.setAttribute('aria-label',`Enlarge property photo ${i+1}`);const img=document.createElement('img');img.src=src;img.alt=`Seajax property and accommodation, photo ${i+1}`;img.loading='lazy';button.append(img);button.addEventListener('click',()=>{dialog.querySelector('img').src=src;dialog.showModal()});gallery.append(button)});
+dialog.querySelector('button').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});document.querySelector('#year').textContent=new Date().getFullYear();

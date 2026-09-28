@@ -2,3 +2,5 @@
 .env.local
 .dev.vars
 .local-editor-store/
+.DS_Store
+*.log

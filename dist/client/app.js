@@ -1,3 +1,5 @@
+document.querySelectorAll('.button > span, .text-link > span').forEach(arrow => arrow.remove());
+
 document.querySelectorAll('.unit-slideshow').forEach(slideshow => {
   const photos = unitPhotos[slideshow.dataset.unit];
   const image = slideshow.querySelector('img');

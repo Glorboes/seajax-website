@@ -12,3 +12,9 @@ Open `/admin` on the website and sign in with the owner's ChatGPT account.
 The editor uses server-side account checks. `EDITOR_EMAIL` is the allowed owner email in Sites runtime settings; do not put it in browser files. Drafts and published content are stored together as an R2 JSON document with conditional writes to prevent silent overwrites from concurrent editors. Photos are stored in R2. Publishing content does not require a code deployment.
 
 Code maintenance: run `node build.mjs` to package the Worker and assets. Future code deployments preserve saved content in R2; changing default-content.json affects only a site with no stored content. Original photos remain available to existing published drafts after they are removed from a new draft.
+
+## GitHub Pages review copy
+
+The temporary client website is published from the repository's `docs/` folder. The secure visual editor continues to publish the Sites-hosted version because GitHub Pages cannot run the editor's authenticated storage or photo upload service.
+
+When a draft is approved for the client review link, update `src/default-content.json` to match the published content, run `node build-pages.mjs`, then commit and push the refreshed `docs/` folder. GitHub Pages will update automatically from the `main` branch.

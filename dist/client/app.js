@@ -1,5 +1,16 @@
 document.querySelectorAll('.button > span, .text-link > span').forEach(arrow => arrow.remove());
 
+const footerEmail = document.querySelector('footer a[href^="mailto:"]');
+if (footerEmail) {
+  const whatsapp = document.createElement('a');
+  whatsapp.href = 'https://wa.me/27764911768';
+  whatsapp.target = '_blank';
+  whatsapp.rel = 'noopener';
+  whatsapp.textContent = 'WhatsApp +27 76 491 1768';
+  whatsapp.setAttribute('aria-label', 'Chat with Seajax on WhatsApp at +27 76 491 1768');
+  footerEmail.after(whatsapp);
+}
+
 function startSmoothVideoLoop(videos) {
   videos[0].classList.add('is-visible');
   let active = 0;

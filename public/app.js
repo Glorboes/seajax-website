@@ -2,17 +2,47 @@ document.querySelectorAll('.button > span, .text-link > span').forEach(arrow => 
 
 const heroImage = document.querySelector('.hero > img');
 if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const heroVideo = document.createElement('video');
-  heroVideo.className = 'hero-video';
-  heroVideo.src = new URL('./table-mountain-waves.mp4', document.baseURI).href;
-  heroVideo.autoplay = true;
-  heroVideo.muted = true;
-  heroVideo.loop = true;
-  heroVideo.playsInline = true;
-  heroVideo.preload = 'metadata';
-  heroVideo.poster = heroImage.src;
-  heroVideo.setAttribute('aria-hidden', 'true');
-  heroImage.replaceWith(heroVideo);
+  const source = new URL('./table-mountain-waves.mp4', document.baseURI).href;
+  const makeHeroVideo = () => {
+    const video = document.createElement('video');
+    video.className = 'hero-video';
+    video.src = source;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.setAttribute('aria-hidden', 'true');
+    return video;
+  };
+  const videos = [makeHeroVideo(), makeHeroVideo()];
+  videos[0].classList.add('is-visible');
+  videos[0].poster = heroImage.src;
+  heroImage.replaceWith(videos[0]);
+  videos[0].after(videos[1]);
+
+  let active = 0;
+  let crossfading = false;
+  async function crossfadeHero() {
+    if (crossfading) return;
+    crossfading = true;
+    const outgoing = videos[active];
+    const incoming = videos[1 - active];
+    incoming.currentTime = 0;
+    try { await incoming.play(); } catch (_) { crossfading = false; return; }
+    requestAnimationFrame(() => {
+      incoming.classList.add('is-visible');
+      outgoing.classList.remove('is-visible');
+    });
+    window.setTimeout(() => {
+      outgoing.pause();
+      outgoing.currentTime = 0;
+      active = 1 - active;
+      crossfading = false;
+    }, 1400);
+  }
+  videos.forEach(video => video.addEventListener('timeupdate', () => {
+    if (video === videos[active] && video.duration - video.currentTime <= 1.5) crossfadeHero();
+  }));
+  videos[0].play().catch(() => {});
 }
 
 const bookingLinks = document.querySelector('.booking > div');

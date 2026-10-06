@@ -1,5 +1,21 @@
 document.querySelectorAll('.button > span, .text-link > span').forEach(arrow => arrow.remove());
 
+const bookingLinks = document.querySelector('.booking > div');
+if (bookingLinks) {
+  for (const [label, href] of [
+    ['Book on LekkeSlaap', 'https://www.lekkeslaap.co.za/accommodation/seajax'],
+    ['Book on NightsBridge', 'https://book.nightsbridge.com/39699']
+  ]) {
+    const link = document.createElement('a');
+    link.className = 'button outline';
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = label;
+    bookingLinks.append(link);
+  }
+}
+
 const coastSection = document.querySelector('.coast');
 if (coastSection) {
   const coastVideo = document.createElement('video');

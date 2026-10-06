@@ -9,7 +9,7 @@ Modern website redesign for Seajax self-catering accommodation in Blouberg, Cape
 
 The website includes four unit-specific photo slideshows, Airbnb and Booking.com links, an embedded Google Map, responsive mobile layouts, and a private editor for changing text and unit photos.
 
-The hero uses free Table Mountain beach footage by [Jean van der Meulen on Pexels](https://www.pexels.com/video/view-of-table-mountain-from-a-rocky-beach-at-sunrise-11254215/). The coastal section uses free South African ocean footage by [Warren Smith on Pexels](https://www.pexels.com/video/aerial-ocean-waves-19113379/). Both are licensed for free use under the Pexels license.
+The hero uses free Table Mountain beach footage by [Jean van der Meulen on Pexels](https://www.pexels.com/video/view-of-table-mountain-from-a-rocky-beach-at-sunrise-11254215/). The coastal section uses free South African ocean footage by [Warren Smith on Pexels](https://www.pexels.com/video/aerial-ocean-waves-19113379/), and the booking section uses free aerial beach footage with Table Mountain by [Taryn Elliott on Pexels](https://www.pexels.com/video/drone-footage-of-a-beach-with-view-of-a-mountain-3326782/). The footage is licensed for free use under the Pexels license.
 
 The GitHub Pages address is the client review link while the website is being completed. The private editor remains on the secure Sites address because its drafts, photo uploads and publishing controls require authenticated storage.
 

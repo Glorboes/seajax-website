@@ -1,27 +1,10 @@
 document.querySelectorAll('.button > span, .text-link > span').forEach(arrow => arrow.remove());
 
-const heroImage = document.querySelector('.hero > img');
-if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const source = new URL('./table-mountain-waves.mp4', document.baseURI).href;
-  const makeHeroVideo = () => {
-    const video = document.createElement('video');
-    video.className = 'hero-video';
-    video.src = source;
-    video.muted = true;
-    video.playsInline = true;
-    video.preload = 'auto';
-    video.setAttribute('aria-hidden', 'true');
-    return video;
-  };
-  const videos = [makeHeroVideo(), makeHeroVideo()];
+function startSmoothVideoLoop(videos) {
   videos[0].classList.add('is-visible');
-  videos[0].poster = heroImage.src;
-  heroImage.replaceWith(videos[0]);
-  videos[0].after(videos[1]);
-
   let active = 0;
   let crossfading = false;
-  async function crossfadeHero() {
+  async function crossfade() {
     if (crossfading) return;
     crossfading = true;
     const outgoing = videos[active];
@@ -40,9 +23,29 @@ if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
     }, 1400);
   }
   videos.forEach(video => video.addEventListener('timeupdate', () => {
-    if (video === videos[active] && video.duration - video.currentTime <= 1.5) crossfadeHero();
+    if (video === videos[active] && video.duration - video.currentTime <= 1.5) crossfade();
   }));
   videos[0].play().catch(() => {});
+}
+
+const heroImage = document.querySelector('.hero > img');
+if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const source = new URL('./table-mountain-waves.mp4', document.baseURI).href;
+  const makeHeroVideo = () => {
+    const video = document.createElement('video');
+    video.className = 'hero-video';
+    video.src = source;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.setAttribute('aria-hidden', 'true');
+    return video;
+  };
+  const videos = [makeHeroVideo(), makeHeroVideo()];
+  videos[0].poster = heroImage.src;
+  heroImage.replaceWith(videos[0]);
+  videos[0].after(videos[1]);
+  startSmoothVideoLoop(videos);
 }
 
 const bookingLinks = document.querySelector('.booking > div');
@@ -59,6 +62,25 @@ if (bookingLinks) {
     link.textContent = label;
     bookingLinks.append(link);
   }
+}
+
+const bookingSection = document.querySelector('.booking');
+if (bookingSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const source = new URL('./blouberg-booking.mp4', document.baseURI).href;
+  const videos = [0, 1].map(() => {
+    const video = document.createElement('video');
+    video.className = 'booking-video';
+    video.src = source;
+    video.muted = true;
+    video.playsInline = true;
+    video.playbackRate = 0.8;
+    video.preload = 'auto';
+    video.setAttribute('aria-hidden', 'true');
+    return video;
+  });
+  bookingSection.prepend(videos[1]);
+  bookingSection.prepend(videos[0]);
+  startSmoothVideoLoop(videos);
 }
 
 const coastSection = document.querySelector('.coast');

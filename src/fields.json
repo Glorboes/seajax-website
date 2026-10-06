@@ -32,7 +32,7 @@
   {
     "key": "text_7",
     "group": "Welcome",
-    "label": "Four self-catering stays, a short drive from the beach."
+    "label": "Four self-catering stays, a short walk from the beach."
   },
   {
     "key": "text_8",
@@ -67,7 +67,7 @@
   {
     "key": "text_14",
     "group": "Welcome",
-    "label": "5 minutes to the beach by car"
+    "label": "5 minutes to the beach on foot"
   },
   {
     "key": "text_15",
@@ -187,7 +187,7 @@
   {
     "key": "text_38",
     "group": "The coast",
-    "label": "Take a short drive to Blouberg Beach, take in the views of Table Mountain, or spend t"
+    "label": "Take a short walk to Blouberg Beach, take in the views of Table Mountain, or spend th"
   },
   {
     "key": "text_39",
@@ -202,7 +202,7 @@
   {
     "key": "text_41",
     "group": "The coast",
-    "label": "Just a five-minute drive to the beach, with ocean views and time to relax."
+    "label": "Just a five-minute walk to the beach, with ocean views and time to relax."
   },
   {
     "key": "text_42",
@@ -257,12 +257,12 @@
   {
     "key": "text_52",
     "group": "Location",
-    "label": "Blouberg Beach / Kite Beach"
+    "label": "Blouberg Beach"
   },
   {
     "key": "text_53",
     "group": "Location",
-    "label": "~5 min drive"
+    "label": "~5 min walk"
   },
   {
     "key": "text_54",

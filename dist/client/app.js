@@ -1,5 +1,20 @@
 document.querySelectorAll('.button > span, .text-link > span').forEach(arrow => arrow.remove());
 
+const heroImage = document.querySelector('.hero > img');
+if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const heroVideo = document.createElement('video');
+  heroVideo.className = 'hero-video';
+  heroVideo.src = new URL('./table-mountain-waves.mp4', document.baseURI).href;
+  heroVideo.autoplay = true;
+  heroVideo.muted = true;
+  heroVideo.loop = true;
+  heroVideo.playsInline = true;
+  heroVideo.preload = 'metadata';
+  heroVideo.poster = heroImage.src;
+  heroVideo.setAttribute('aria-hidden', 'true');
+  heroImage.replaceWith(heroVideo);
+}
+
 const bookingLinks = document.querySelector('.booking > div');
 if (bookingLinks) {
   for (const [label, href] of [

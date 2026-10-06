@@ -9,6 +9,8 @@ Modern website redesign for Seajax self-catering accommodation in Blouberg, Cape
 
 The website includes four unit-specific photo slideshows, Airbnb and Booking.com links, an embedded Google Map, responsive mobile layouts, and a private editor for changing text and unit photos.
 
+The coastal section uses free South African ocean footage by [Warren Smith on Pexels](https://www.pexels.com/video/aerial-ocean-waves-19113379/), licensed for free use under the Pexels license.
+
 The GitHub Pages address is the client review link while the website is being completed. The private editor remains on the secure Sites address because its drafts, photo uploads and publishing controls require authenticated storage.
 
 ## Editing content

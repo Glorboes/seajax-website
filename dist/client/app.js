@@ -1,5 +1,19 @@
 document.querySelectorAll('.button > span, .text-link > span').forEach(arrow => arrow.remove());
 
+const coastSection = document.querySelector('.coast');
+if (coastSection) {
+  const coastVideo = document.createElement('video');
+  coastVideo.className = 'coast-video';
+  coastVideo.src = new URL('./blouberg-waves.mp4', document.baseURI).href;
+  coastVideo.autoplay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  coastVideo.muted = true;
+  coastVideo.loop = true;
+  coastVideo.playsInline = true;
+  coastVideo.preload = 'metadata';
+  coastVideo.setAttribute('aria-hidden', 'true');
+  coastSection.prepend(coastVideo);
+}
+
 document.querySelectorAll('.unit-slideshow').forEach(slideshow => {
   const photos = unitPhotos[slideshow.dataset.unit];
   const image = slideshow.querySelector('img');

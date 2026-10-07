@@ -15,6 +15,7 @@ function startSmoothVideoLoop(videos) {
   videos[0].classList.add('is-visible');
   let active = 0;
   let crossfading = false;
+  const resume = () => videos[active].play().catch(() => {});
   async function crossfade() {
     if (crossfading) return;
     crossfading = true;
@@ -36,7 +37,24 @@ function startSmoothVideoLoop(videos) {
   videos.forEach(video => video.addEventListener('timeupdate', () => {
     if (video === videos[active] && video.duration - video.currentTime <= 1.5) crossfade();
   }));
-  videos[0].play().catch(() => {});
+  videos[0].addEventListener('canplay', resume, { once: true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) resume();
+  });
+  document.addEventListener('touchstart', resume, { once: true, passive: true });
+  document.addEventListener('pointerdown', resume, { once: true, passive: true });
+  resume();
+}
+
+function configureBackgroundVideo(video) {
+  video.autoplay = true;
+  video.defaultMuted = true;
+  video.muted = true;
+  video.playsInline = true;
+  video.setAttribute('autoplay', '');
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
 }
 
 const heroImage = document.querySelector('.hero > img');
@@ -46,8 +64,7 @@ if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
     const video = document.createElement('video');
     video.className = 'hero-video';
     video.src = source;
-    video.muted = true;
-    video.playsInline = true;
+    configureBackgroundVideo(video);
     video.preload = 'auto';
     video.setAttribute('aria-hidden', 'true');
     return video;
@@ -82,8 +99,7 @@ if (bookingSection && !window.matchMedia('(prefers-reduced-motion: reduce)').mat
     const video = document.createElement('video');
     video.className = 'booking-video';
     video.src = source;
-    video.muted = true;
-    video.playsInline = true;
+    configureBackgroundVideo(video);
     video.playbackRate = 0.8;
     video.preload = 'auto';
     video.setAttribute('aria-hidden', 'true');
@@ -99,13 +115,16 @@ if (coastSection) {
   const coastVideo = document.createElement('video');
   coastVideo.className = 'coast-video';
   coastVideo.src = new URL('./blouberg-waves.mp4', document.baseURI).href;
+  configureBackgroundVideo(coastVideo);
   coastVideo.autoplay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  coastVideo.muted = true;
   coastVideo.loop = true;
-  coastVideo.playsInline = true;
   coastVideo.preload = 'metadata';
   coastVideo.setAttribute('aria-hidden', 'true');
   coastSection.prepend(coastVideo);
+  const resumeCoastVideo = () => coastVideo.play().catch(() => {});
+  coastVideo.addEventListener('canplay', resumeCoastVideo, { once: true });
+  document.addEventListener('touchstart', resumeCoastVideo, { once: true, passive: true });
+  document.addEventListener('pointerdown', resumeCoastVideo, { once: true, passive: true });
 }
 
 document.querySelectorAll('.unit-slideshow').forEach(slideshow => {

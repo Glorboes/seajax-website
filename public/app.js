@@ -46,6 +46,33 @@ function startSmoothVideoLoop(videos) {
   resume();
 }
 
+function startMobileVideoLoop(video) {
+  video.classList.add('is-visible');
+  let fading = false;
+  const resume = () => video.play().catch(() => {});
+  video.addEventListener('timeupdate', () => {
+    if (!fading && video.duration - video.currentTime <= 0.8) {
+      fading = true;
+      video.classList.add('is-loop-fading');
+    }
+  });
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    resume();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      video.classList.remove('is-loop-fading');
+      fading = false;
+    }));
+  });
+  video.addEventListener('canplay', resume, { once: true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) resume();
+  });
+  document.addEventListener('touchstart', resume, { once: true, passive: true });
+  document.addEventListener('pointerdown', resume, { once: true, passive: true });
+  resume();
+}
+
 function configureBackgroundVideo(video) {
   video.autoplay = true;
   video.defaultMuted = true;
@@ -59,6 +86,7 @@ function configureBackgroundVideo(video) {
 
 const heroImage = document.querySelector('.hero > img');
 if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const mobilePlayback = window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
   const source = new URL('./table-mountain-waves.mp4', document.baseURI).href;
   const makeHeroVideo = () => {
     const video = document.createElement('video');
@@ -69,11 +97,14 @@ if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
     video.setAttribute('aria-hidden', 'true');
     return video;
   };
-  const videos = [makeHeroVideo(), makeHeroVideo()];
-  videos[0].poster = heroImage.src;
+  const videos = mobilePlayback ? [makeHeroVideo()] : [makeHeroVideo(), makeHeroVideo()];
   heroImage.replaceWith(videos[0]);
-  videos[0].after(videos[1]);
-  startSmoothVideoLoop(videos);
+  if (mobilePlayback) {
+    startMobileVideoLoop(videos[0]);
+  } else {
+    videos[0].after(videos[1]);
+    startSmoothVideoLoop(videos);
+  }
 }
 
 const bookingLinks = document.querySelector('.booking > div');
@@ -94,8 +125,9 @@ if (bookingLinks) {
 
 const bookingSection = document.querySelector('.booking');
 if (bookingSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const mobilePlayback = window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
   const source = new URL('./blouberg-booking.mp4', document.baseURI).href;
-  const videos = [0, 1].map(() => {
+  const videos = Array.from({ length: mobilePlayback ? 1 : 2 }, () => {
     const video = document.createElement('video');
     video.className = 'booking-video';
     video.src = source;
@@ -105,9 +137,13 @@ if (bookingSection && !window.matchMedia('(prefers-reduced-motion: reduce)').mat
     video.setAttribute('aria-hidden', 'true');
     return video;
   });
-  bookingSection.prepend(videos[1]);
   bookingSection.prepend(videos[0]);
-  startSmoothVideoLoop(videos);
+  if (mobilePlayback) {
+    startMobileVideoLoop(videos[0]);
+  } else {
+    bookingSection.prepend(videos[1]);
+    startSmoothVideoLoop(videos);
+  }
 }
 
 const coastSection = document.querySelector('.coast');

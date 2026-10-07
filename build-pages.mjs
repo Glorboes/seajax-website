@@ -17,8 +17,8 @@ function escapeHtml(value) {
 let html = read('src/template.html')
   .replace(/\{\{(text_\d+)\}\}/g, (_, key) => escapeHtml(content.text[key]))
   .replace('{{UNIT_PHOTOS}}', JSON.stringify(content.photos).replaceAll('"/', '"./'))
-  .replaceAll('href="/style.css"', 'href="./style.css?v=12"')
-  .replaceAll('src="/app.js"', 'src="./app.js?v=12"')
+  .replaceAll('href="/style.css"', 'href="./style.css?v=13"')
+  .replaceAll('src="/app.js"', 'src="./app.js?v=13"')
   .replaceAll('src="/hero.png"', 'src="./hero.png"')
   .replaceAll('src="/photos/', 'src="./photos/');
 

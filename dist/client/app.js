@@ -82,6 +82,9 @@ function configureBackgroundVideo(video) {
   video.setAttribute('muted', '');
   video.setAttribute('playsinline', '');
   video.setAttribute('webkit-playsinline', '');
+  const showPlayingVideo = () => video.classList.add('has-started');
+  video.addEventListener('playing', showPlayingVideo);
+  if (!video.paused && video.currentTime > 0) showPlayingVideo();
 }
 
 const heroVideo = document.querySelector('.hero-video');

@@ -84,24 +84,18 @@ function configureBackgroundVideo(video) {
   video.setAttribute('webkit-playsinline', '');
 }
 
-const heroImage = document.querySelector('.hero > img');
-if (heroImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const mobilePlayback = window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
-  const source = new URL('./table-mountain-waves.mp4', document.baseURI).href;
-  const makeHeroVideo = () => {
-    const video = document.createElement('video');
-    video.className = 'hero-video';
-    video.src = source;
-    configureBackgroundVideo(video);
-    video.preload = 'auto';
-    video.setAttribute('aria-hidden', 'true');
-    return video;
-  };
-  const videos = mobilePlayback ? [makeHeroVideo()] : [makeHeroVideo(), makeHeroVideo()];
-  heroImage.replaceWith(videos[0]);
+  configureBackgroundVideo(heroVideo);
+  heroVideo.loop = false;
+  const videos = [heroVideo];
   if (mobilePlayback) {
     startMobileVideoLoop(videos[0]);
   } else {
+    const secondVideo = heroVideo.cloneNode(false);
+    secondVideo.classList.remove('is-visible', 'is-loop-fading');
+    videos.push(secondVideo);
     videos[0].after(videos[1]);
     startSmoothVideoLoop(videos);
   }
@@ -124,39 +118,31 @@ if (bookingLinks) {
 }
 
 const bookingSection = document.querySelector('.booking');
-if (bookingSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+const bookingVideo = document.querySelector('.booking-video');
+if (bookingSection && bookingVideo && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const mobilePlayback = window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
-  const source = new URL('./blouberg-booking.mp4', document.baseURI).href;
-  const videos = Array.from({ length: mobilePlayback ? 1 : 2 }, () => {
-    const video = document.createElement('video');
-    video.className = 'booking-video';
-    video.src = source;
-    configureBackgroundVideo(video);
-    video.playbackRate = 0.8;
-    video.preload = 'auto';
-    video.setAttribute('aria-hidden', 'true');
-    return video;
-  });
-  bookingSection.prepend(videos[0]);
+  configureBackgroundVideo(bookingVideo);
+  bookingVideo.loop = false;
+  bookingVideo.playbackRate = 0.8;
+  const videos = [bookingVideo];
   if (mobilePlayback) {
     startMobileVideoLoop(videos[0]);
   } else {
+    const secondVideo = bookingVideo.cloneNode(false);
+    secondVideo.classList.remove('is-visible', 'is-loop-fading');
+    videos.push(secondVideo);
     bookingSection.prepend(videos[1]);
     startSmoothVideoLoop(videos);
   }
 }
 
 const coastSection = document.querySelector('.coast');
-if (coastSection) {
-  const coastVideo = document.createElement('video');
-  coastVideo.className = 'coast-video';
-  coastVideo.src = new URL('./blouberg-waves.mp4', document.baseURI).href;
+const coastVideo = document.querySelector('.coast-video');
+if (coastSection && coastVideo) {
   configureBackgroundVideo(coastVideo);
   coastVideo.autoplay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   coastVideo.loop = true;
   coastVideo.preload = 'metadata';
-  coastVideo.setAttribute('aria-hidden', 'true');
-  coastSection.prepend(coastVideo);
   const resumeCoastVideo = () => coastVideo.play().catch(() => {});
   coastVideo.addEventListener('canplay', resumeCoastVideo, { once: true });
   document.addEventListener('touchstart', resumeCoastVideo, { once: true, passive: true });
